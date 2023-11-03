@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #fffbf4;
+  background-color: $light-beige;
 }
 
 main {
@@ -34,7 +34,7 @@ button {
 }
 
 html {
-  font-family: "Open Sans, sans-serif";
+  font-family: "Open Sans", sans-serif;
   font-weight: normal;
   font-style: normal;
 }
@@ -53,4 +53,8 @@ html {
   @include respond(big-desktop) {
     font-size: 75%;
   }
+}
+
+.bold {
+  font-weight: bold;
 }
