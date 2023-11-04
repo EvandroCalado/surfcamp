@@ -3,6 +3,8 @@
 @import "base/typography";
 @import "base/base";
 
-@import "./components/header";
-@import "./components/button";
-@import "./components/footer";
+@import "./components/layout/header";
+@import "./components/layout/footer";
+
+@import "./components/shared/button";
+@import "./components/shared/section-hero";
