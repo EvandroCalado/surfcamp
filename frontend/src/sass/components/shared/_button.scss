@@ -1,0 +1,42 @@
+.btn {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  transition: all 150ms ease-in-out;
+
+  &--small {
+    padding: 1rem 1.8rem;
+    border-radius: 2.5rem;
+  }
+
+  &--medium {
+    padding: 1.6rem 3.2rem;
+    border-radius: 3.2rem;
+  }
+
+  &--black {
+    background-color: #000000;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #000000e6;
+    }
+  }
+
+  &--turquoise {
+    background-color: $turquoise;
+    color: #ffffff;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+
+  &--orange {
+    background-color: $orange;
+    color: #ffffff;
+
+    &:hover {
+      filter: brightness(110%);
+    }
+  }
+}
