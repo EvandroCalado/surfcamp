@@ -1,0 +1,36 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin: 16rem 0;
+
+  &--reversed {
+    flex-direction: row-reverse;
+
+    & .info__image {
+      border-radius: 32rem 0 0 32rem;
+    }
+  }
+
+  &__image {
+    position: relative;
+    width: 48%;
+    height: 65rem;
+    border-radius: 0 32rem 32rem 0;
+    overflow: hidden;
+  }
+
+  &__text {
+    width: 62%;
+    height: 6.5rem;
+    padding: 0 4.8rem;
+  }
+
+  &__headline {
+    margin-top: 4rem;
+    margin-top: 3rem;
+  }
+
+  & .btn {
+    margin-top: 3rem;
+  }
+}
