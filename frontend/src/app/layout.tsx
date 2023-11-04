@@ -1,6 +1,6 @@
+import { Footer, Header } from "@/components/Layout";
 import type { Metadata } from "next";
 import "../sass/main.scss";
-import { Footer, Header } from "@/components";
 
 export const metadata: Metadata = {
   title: "Create Next App",
