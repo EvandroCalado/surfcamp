@@ -43,8 +43,8 @@ export function Footer() {
           className="footer__logo"
           src={"/assets/logo.svg"}
           alt="Logo"
-          width={60}
-          height={60}
+          width={150}
+          height={150}
         />
 
         <ul className="footer__links">
