@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   {
@@ -17,14 +20,18 @@ const navItems = [
 ];
 
 export function Header() {
+  const path = usePathname();
+
   return (
-    <header className="header">
+    <header
+      className={`header ${path === "/experience" ? "header--light" : ""}`}
+    >
       <Image
         className="header__logo"
         src={"/assets/logo.svg"}
         alt="Logo"
-        width={60}
-        height={60}
+        width={100}
+        height={100}
       />
 
       <ul className="header__nav">
