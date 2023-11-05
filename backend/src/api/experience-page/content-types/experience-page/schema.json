@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "experience_pages",
+  "info": {
+    "singularName": "experience-page",
+    "pluralName": "experience-pages",
+    "displayName": "ExperiencePage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "section_hero": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::section-hero.section-hero"
+    },
+    "infos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::info.info"
+    }
+  }
+}

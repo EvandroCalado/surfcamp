@@ -481,6 +481,50 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -632,43 +676,158 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiExperiencePageExperiencePage extends Schema.SingleType {
+  collectionName: 'experience_pages';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
+    singularName: 'experience-page';
+    pluralName: 'experience-pages';
+    displayName: 'ExperiencePage';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
-    code: Attribute.String & Attribute.Unique;
+    section_hero: Attribute.Relation<
+      'api::experience-page.experience-page',
+      'oneToOne',
+      'api::section-hero.section-hero'
+    >;
+    infos: Attribute.Relation<
+      'api::experience-page.experience-page',
+      'oneToMany',
+      'api::info.info'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::experience-page.experience-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::experience-page.experience-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInfoInfo extends Schema.CollectionType {
+  collectionName: 'infos';
+  info: {
+    singularName: 'info';
+    pluralName: 'infos';
+    displayName: 'Info';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    headline: Attribute.String & Attribute.Required;
+    text: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
+    image: Attribute.Media & Attribute.Required;
+    reversed: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    button: Attribute.Component<'shared.button'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::info.info', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::info.info', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInfoPageInfoPage extends Schema.SingleType {
+  collectionName: 'info_pages';
+  info: {
+    singularName: 'info-page';
+    pluralName: 'info-pages';
+    displayName: 'InfoPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    section_hero: Attribute.Relation<
+      'api::info-page.info-page',
+      'oneToOne',
+      'api::section-hero.section-hero'
+    >;
+    infos: Attribute.Relation<
+      'api::info-page.info-page',
+      'oneToMany',
+      'api::info.info'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::info-page.info-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::info-page.info-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSectionHeroSectionHero extends Schema.CollectionType {
+  collectionName: 'section_heroes';
+  info: {
+    singularName: 'section-hero';
+    pluralName: 'section-heroes';
+    displayName: 'SectionHero';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    headline: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
+    image: Attribute.Media & Attribute.Required;
+    logo: Attribute.Media & Attribute.Required;
+    button: Attribute.Component<'shared.button'> & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::section-hero.section-hero',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::section-hero.section-hero',
       'oneToOne',
       'admin::user'
     > &
@@ -688,10 +847,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::experience-page.experience-page': ApiExperiencePageExperiencePage;
+      'api::info.info': ApiInfoInfo;
+      'api::info-page.info-page': ApiInfoPageInfoPage;
+      'api::section-hero.section-hero': ApiSectionHeroSectionHero;
     }
   }
 }

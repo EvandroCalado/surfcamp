@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "section_heroes",
+  "info": {
+    "singularName": "section-hero",
+    "pluralName": "section-heroes",
+    "displayName": "SectionHero",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "headline": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.button",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
