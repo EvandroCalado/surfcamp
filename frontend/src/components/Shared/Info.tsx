@@ -1,26 +1,31 @@
+import { TypeInfo } from "@/types/typeInfo";
 import Image from "next/image";
 
 export type InfoProps = {
-  info: {
-    headline: string;
-    text: React.ReactNode;
-    button: React.ReactNode;
-    reversed: boolean;
-  };
+  info: TypeInfo;
 };
 
 export function Info({ info }: InfoProps) {
+  const { button, headline, image, text, reversed } = info.attributes;
+
   return (
-    <section className={`info ${info.reversed ? "info--reversed" : ""}`}>
+    <section className={`info ${reversed ? "info--reversed" : ""}`}>
       <div className="info__image">
-        <Image src={"/info-blocks/rectangle.png"} alt="Info" fill />
+        <Image src={image.data.attributes.url} alt="Info" fill />
       </div>
 
       <div className="info__text">
-        <h2 className="info__headline">{info.headline}</h2>
-        {info.text}
+        <h2 className="info__headline">{headline}</h2>
+        <div
+          className="info__description"
+          dangerouslySetInnerHTML={{ __html: text }}
+        ></div>
 
-        {info.button}
+        {button && (
+          <button className={`btn btn--small btn--${button.color}`}>
+            {button.text}
+          </button>
+        )}
       </div>
     </section>
   );
