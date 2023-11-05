@@ -1,33 +1,38 @@
+import { TypeSectionHero } from "@/types/typeInfo";
 import Image from "next/image";
 import Link from "next/link";
 
 export type SectionHeroProps = {
-  image: string;
-  headline: React.ReactNode;
-  theme?: string;
+  section_hero: TypeSectionHero;
 };
 
-export function SectionHero({
-  image = "/assets/hero-home.jpeg",
-  headline,
-  theme = "turquoise",
-}: SectionHeroProps) {
+export function SectionHero({ section_hero }: SectionHeroProps) {
+  const { image, button, headline } = section_hero.data.attributes;
+
   return (
     <section className="hero">
       <div className="hero__background">
-        <Image src={image} alt="Hero image" width={1080} height={720} />
+        <Image
+          src={image.data.attributes.url}
+          alt="Hero image"
+          width={1080}
+          height={720}
+        />
       </div>
 
-      <div className={`hero__headline hero__headline--${theme}`}>
-        {headline}
-      </div>
+      <div
+        className={`hero__headline hero__headline--${button.color}`}
+        dangerouslySetInnerHTML={{
+          __html: headline,
+        }}
+      ></div>
 
-      <button className={`btn btn--medium btn--${theme}`}>
+      <button className={`btn btn--medium btn--${button.color}`}>
         <Link href={"/events"}>Reservar</Link>
       </button>
 
       <Image
-        className={`hero__logo hero__logo--${theme}`}
+        className={`hero__logo hero__logo--${button.color}`}
         src={"/assets/logo.svg"}
         alt="Logo"
         width={150}
