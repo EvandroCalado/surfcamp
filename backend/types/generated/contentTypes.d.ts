@@ -676,6 +676,93 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAuthorAuthor extends Schema.CollectionType {
+  collectionName: 'authors';
+  info: {
+    singularName: 'author';
+    pluralName: 'authors';
+    displayName: 'Author';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::author.author', 'name'> & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    blog_articles: Attribute.Relation<
+      'api::author.author',
+      'oneToMany',
+      'api::blog-article.blog-article'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::author.author',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBlogArticleBlogArticle extends Schema.CollectionType {
+  collectionName: 'blog_articles';
+  info: {
+    singularName: 'blog-article';
+    pluralName: 'blog-articles';
+    displayName: 'Blog Article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    headline: Attribute.String & Attribute.Required;
+    excerpt: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    slug: Attribute.UID<'api::blog-article.blog-article', 'headline'>;
+    isHighlightArticle: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    author: Attribute.Relation<
+      'api::blog-article.blog-article',
+      'manyToOne',
+      'api::author.author'
+    >;
+    articleContent: Attribute.DynamicZone<
+      [
+        'blog-article.content-with-image',
+        'blog-article.content-only-text',
+        'blog-article.image-landscape'
+      ]
+    > &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::blog-article.blog-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::blog-article.blog-article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiExperiencePageExperiencePage extends Schema.SingleType {
   collectionName: 'experience_pages';
   info: {
@@ -851,6 +938,8 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::author.author': ApiAuthorAuthor;
+      'api::blog-article.blog-article': ApiBlogArticleBlogArticle;
       'api::experience-page.experience-page': ApiExperiencePageExperiencePage;
       'api::info.info': ApiInfoInfo;
       'api::info-page.info-page': ApiInfoPageInfoPage;

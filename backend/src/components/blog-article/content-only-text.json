@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blog_article_content_only_texts",
+  "info": {
+    "displayName": "contentOnlyText"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor.CKEditor"
+    }
+  }
+}

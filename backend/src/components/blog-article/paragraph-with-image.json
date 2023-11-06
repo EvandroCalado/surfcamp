@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_blog_article_paragraph_with_images",
+  "info": {
+    "displayName": "paragraphWithImage"
+  },
+  "options": {},
+  "attributes": {
+    "paragraph": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "isLandscape": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "imageShowsRight": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "imageCaption": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

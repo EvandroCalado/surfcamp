@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blog_article_image_landscapes",
+  "info": {
+    "displayName": "imageLandscape",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "imageCaption": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
