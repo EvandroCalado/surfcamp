@@ -1,18 +1,22 @@
 import { TypeInfo } from "@/types/typeInfo";
+import { ENDPOINTS } from "@/utils/constants";
 
 export class ExperienceClass {
   async get() {
-    const response = await fetch(
-      `http://127.0.0.1:1337/api/experience-page?populate=deep`,
-      {
-        cache: "no-store",
-      }
-    );
+    try {
+      const response = await fetch(ENDPOINTS.EXPERIENCE, {
+        next: {
+          revalidate: 3600,
+        },
+      });
 
-    const result: TypeInfo = await response.json();
+      const result: TypeInfo = await response.json();
 
-    if (response.status !== 200) throw result;
+      if (response.status !== 200) throw result;
 
-    return result.data;
+      return result.data;
+    } catch (error) {
+      console.log("Experience", error);
+    }
   }
 }
