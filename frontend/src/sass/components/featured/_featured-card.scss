@@ -1,0 +1,38 @@
+.featured-card {
+  width: 100%;
+  border-radius: 3.35rem;
+  overflow: hidden;
+
+  &:hover {
+    img {
+      filter: brightness(130%);
+    }
+  }
+
+  &__image {
+    position: relative;
+    width: 100%;
+    height: 35.5rem;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 300ms ease-in-out;
+    }
+  }
+
+  &__content {
+    background-color: $light-brown;
+    padding: 2rem 3rem 3.5rem;
+    justify-content: space-between;
+
+    &--headline {
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+  }
+}
