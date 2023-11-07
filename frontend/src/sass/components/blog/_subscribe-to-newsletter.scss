@@ -1,0 +1,35 @@
+.subscribe-to-newsletter {
+  display: flex;
+  background-color: $light-brown;
+  padding: 3.8rem;
+  border-radius: 3.5rem;
+
+  &__success {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__info {
+    > h4 {
+      margin-bottom: 2.3rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+    margin-left: 3rem;
+  }
+
+  &__email {
+    background-color: $light-beige;
+    width: 35rem;
+    height: 6.1rem;
+    border-radius: 1.8rem 0 0 1.8rem;
+    padding-left: 2rem;
+  }
+
+  &__submit {
+    border-radius: 0 1.8rem 1.8rem 0;
+  }
+}
