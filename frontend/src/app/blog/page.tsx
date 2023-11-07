@@ -59,7 +59,7 @@ export default function Blog() {
       <SubscribeToNewsletter />
       <FeaturedItems
         featuredItems={featuredItemsArticles!}
-        headline="Nossos Artigos em Destaque"
+        headline="Artigos em Destaque"
       />
 
       <div className="blog__button-container">
