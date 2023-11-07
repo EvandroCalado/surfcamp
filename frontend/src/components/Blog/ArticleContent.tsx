@@ -6,9 +6,9 @@ export type ArticleContentProps = {
 
 export function ArticleContent({ article }: ArticleContentProps) {
   return (
-    <div className="article-component">
+    <div className="article-content">
       <div
-        className="article-component__content"
+        className="article-content__body"
         dangerouslySetInnerHTML={{ __html: article.attributes.content }}
       ></div>
     </div>
