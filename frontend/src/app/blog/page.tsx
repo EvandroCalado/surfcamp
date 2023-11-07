@@ -51,6 +51,8 @@ export default function Blog() {
   if (!featuredItemsArticles) return null;
   if (!highlightArticle) return null;
 
+  const noMorePost = pageCount === currentPage;
+
   return (
     <main className="blog">
       <HighlightArticle HighlightArticle={highlightArticle!} />
@@ -62,11 +64,17 @@ export default function Blog() {
 
       <div className="blog__button-container">
         <button
-          disabled={pageCount === currentPage ? true : disabled}
+          disabled={noMorePost ? true : disabled}
           onClick={handleOnClick}
           className="btn btn--medium btn--turquoise blog__button"
         >
-          {loading ? <Loading /> : "Veja mais"}
+          {noMorePost ? (
+            "Sem Mais Artigos"
+          ) : loading ? (
+            <Loading />
+          ) : (
+            "Veja mais"
+          )}
         </button>
       </div>
     </main>
