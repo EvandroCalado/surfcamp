@@ -66,11 +66,10 @@ export class BlogClass {
   }
 
   async getBySlug(slug: string) {
-    const sort = "sort=publishedAt:desc";
     const filter = `filters[slug][$eq]=${slug}`;
 
     try {
-      const response = await fetch(`${ENDPOINTS.BLOG}&${filter}&${sort}`, {
+      const response = await fetch(`${ENDPOINTS.BLOG}&${filter}`, {
         next: {
           revalidate: 3600,
         },
@@ -79,6 +78,8 @@ export class BlogClass {
       const result: TypeBlogs = await response.json();
 
       if (response.status !== 200) throw result;
+
+      if (!result.data) return null;
 
       return result.data[0];
     } catch (error) {
