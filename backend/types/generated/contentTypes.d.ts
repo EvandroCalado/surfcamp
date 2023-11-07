@@ -737,14 +737,15 @@ export interface ApiBlogArticleBlogArticle extends Schema.CollectionType {
       'manyToOne',
       'api::author.author'
     >;
-    articleContent: Attribute.DynamicZone<
-      [
-        'blog-article.content-with-image',
-        'blog-article.content-only-text',
-        'blog-article.image-landscape'
-      ]
-    > &
-      Attribute.Required;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

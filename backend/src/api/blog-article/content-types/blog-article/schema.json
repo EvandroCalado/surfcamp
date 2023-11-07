@@ -43,14 +43,14 @@
       "target": "api::author.author",
       "inversedBy": "blog_articles"
     },
-    "articleContent": {
-      "type": "dynamiczone",
-      "components": [
-        "blog-article.content-with-image",
-        "blog-article.content-only-text",
-        "blog-article.image-landscape"
-      ],
-      "required": true
+    "content": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }
