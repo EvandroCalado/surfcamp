@@ -4,6 +4,7 @@ export interface BlogArticleContentOnlyText extends Schema.Component {
   collectionName: 'components_blog_article_content_only_texts';
   info: {
     displayName: 'contentOnlyText';
+    description: '';
   };
   attributes: {
     content: Attribute.RichText &
@@ -15,6 +16,7 @@ export interface BlogArticleContentOnlyText extends Schema.Component {
           preset: 'rich';
         }
       >;
+    indexName: Attribute.String & Attribute.Required;
   };
 }
 
@@ -22,6 +24,7 @@ export interface BlogArticleContentWithImage extends Schema.Component {
   collectionName: 'components_blog_article_content_with_images';
   info: {
     displayName: 'contentWithImage';
+    description: '';
   };
   attributes: {
     content: Attribute.RichText &
@@ -41,6 +44,7 @@ export interface BlogArticleContentWithImage extends Schema.Component {
     imageShowsRight: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<true>;
+    indexName: Attribute.String & Attribute.Required;
   };
 }
 
@@ -90,6 +94,7 @@ export interface BlogArticleImageLandscape extends Schema.Component {
   attributes: {
     image: Attribute.Media & Attribute.Required;
     imageCaption: Attribute.String & Attribute.Required;
+    indexName: Attribute.String & Attribute.Required;
   };
 }
 

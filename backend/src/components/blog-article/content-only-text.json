@@ -1,7 +1,8 @@
 {
   "collectionName": "components_blog_article_content_only_texts",
   "info": {
-    "displayName": "contentOnlyText"
+    "displayName": "contentOnlyText",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,6 +14,10 @@
       },
       "required": true,
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "indexName": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -17,6 +17,10 @@
     "imageCaption": {
       "type": "string",
       "required": true
+    },
+    "indexName": {
+      "type": "string",
+      "required": true
     }
   }
 }
