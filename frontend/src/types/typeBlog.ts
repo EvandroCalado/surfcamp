@@ -4,186 +4,6 @@ export interface TypeBlogs {
 }
 
 interface Meta {
-  pagination: TypePagination;
-}
-
-export interface TypePagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-export interface TypeBlog {
-  id: number;
-  attributes: Attributes5;
-}
-
-interface Attributes5 {
-  headline: string;
-  excerpt: string;
-  slug: string;
-  isHighlightArticle: boolean;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  image: Image;
-  author: Author;
-  articleContent: ArticleContent[];
-}
-
-interface ArticleContent {
-  id: number;
-  __component: string;
-  content?: string;
-  imageCaption?: string;
-  isLandscape?: boolean;
-  imageShowsRight?: boolean;
-  image?: Image3;
-  indexName: string;
-}
-
-interface Image3 {
-  data: Data4;
-}
-
-interface Data4 {
-  id: number;
-  attributes: Attributes4;
-}
-
-interface Attributes4 {
-  name: string;
-  alternativeText?: any;
-  caption?: any;
-  width: number;
-  height: number;
-  formats: Formats3;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl?: any;
-  provider: string;
-  provider_metadata: Providermetadata;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Formats3 {
-  thumbnail: Thumbnail;
-  small: Thumbnail;
-  medium?: Thumbnail;
-}
-
-interface Author {
-  data: Data3;
-}
-
-interface Data3 {
-  id: number;
-  attributes: Attributes3;
-}
-
-interface Attributes3 {
-  name: string;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  image: Image2;
-}
-
-interface Image2 {
-  data: Data2;
-}
-
-interface Data2 {
-  id: number;
-  attributes: Attributes2;
-}
-
-interface Attributes2 {
-  name: string;
-  alternativeText?: any;
-  caption?: any;
-  width: number;
-  height: number;
-  formats: Formats2;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl?: any;
-  provider: string;
-  provider_metadata: Providermetadata;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Formats2 {
-  thumbnail: Thumbnail;
-}
-
-interface Image {
-  data: Data;
-}
-
-interface Data {
-  id: number;
-  attributes: Attributes;
-}
-
-interface Attributes {
-  name: string;
-  alternativeText?: any;
-  caption?: any;
-  width: number;
-  height: number;
-  formats: Formats;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl?: any;
-  provider: string;
-  provider_metadata: Providermetadata;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Formats {
-  thumbnail: Thumbnail;
-  small?: Thumbnail;
-  medium?: Thumbnail;
-}
-
-interface Thumbnail {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path?: any;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-  provider_metadata: Providermetadata;
-}
-
-interface Providermetadata {
-  public_id: string;
-  resource_type: string;
-}
-interface RootObject {
-  data: Datum[];
-  meta: Meta;
-}
-
-interface Meta {
   pagination: Pagination;
 }
 
@@ -194,12 +14,12 @@ interface Pagination {
   total: number;
 }
 
-interface Datum {
+export interface TypeBlog {
   id: number;
-  attributes: Attributes5;
+  attributes: Attributes4;
 }
 
-interface Attributes5 {
+interface Attributes4 {
   headline: string;
   excerpt: string;
   slug: string;
@@ -207,53 +27,9 @@ interface Attributes5 {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  content: string;
   image: Image;
   author: Author;
-  articleContent: ArticleContent[];
-}
-
-interface ArticleContent {
-  id: number;
-  __component: string;
-  content?: string;
-  imageCaption?: string;
-  isLandscape?: boolean;
-  imageShowsRight?: boolean;
-  image?: Image3;
-}
-
-interface Image3 {
-  data: Data4;
-}
-
-interface Data4 {
-  id: number;
-  attributes: Attributes4;
-}
-
-interface Attributes4 {
-  name: string;
-  alternativeText?: any;
-  caption?: any;
-  width: number;
-  height: number;
-  formats: Formats3;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl?: any;
-  provider: string;
-  provider_metadata: Providermetadata;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Formats3 {
-  thumbnail: Thumbnail;
-  small: Thumbnail;
-  medium?: Thumbnail;
 }
 
 interface Author {
@@ -303,7 +79,7 @@ interface Attributes2 {
 }
 
 interface Formats2 {
-  thumbnail: Thumbnail;
+  thumbnail: Medium;
 }
 
 interface Image {
@@ -335,12 +111,13 @@ interface Attributes {
 }
 
 interface Formats {
-  thumbnail: Thumbnail;
-  small?: Thumbnail;
-  medium?: Thumbnail;
+  medium: Medium;
+  thumbnail: Medium;
+  small: Medium;
+  large: Medium;
 }
 
-interface Thumbnail {
+interface Medium {
   name: string;
   hash: string;
   ext: string;
