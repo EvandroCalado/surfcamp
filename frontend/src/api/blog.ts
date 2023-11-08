@@ -86,4 +86,27 @@ export class BlogClass {
       console.log("Blog", error);
     }
   }
+
+  async getArticlesHome() {
+    const pageSize = 4;
+
+    const pagination = `pagination[page]=1&pagination[pageSize]=${pageSize}`;
+    const sort = "sort=publishedAt:desc";
+
+    try {
+      const response = await fetch(`${ENDPOINTS.BLOG}&${pagination}&${sort}`, {
+        next: {
+          revalidate: 3600,
+        },
+      });
+
+      const result: TypeBlogs = await response.json();
+
+      if (response.status !== 200) throw result;
+
+      return result.data;
+    } catch (error) {
+      console.log("Blog", error);
+    }
+  }
 }
