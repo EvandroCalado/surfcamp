@@ -9,6 +9,14 @@
     text-align: center;
   }
 
+  &__serror {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    text-align: center;
+  }
+
   &__info {
     > h4 {
       margin-bottom: 2.3rem;
@@ -30,6 +38,7 @@
   }
 
   &__submit {
+    height: 6.1rem;
     border-radius: 0 1.8rem 1.8rem 0;
   }
 }
