@@ -1,22 +1,35 @@
 "use client";
 
+import { Subscribe } from "@/api/subscribe";
 import { useState } from "react";
+import { Loading } from "../Shared";
+
+const subscribeCtrl = new Subscribe();
 
 export function SubscribeToNewsletter() {
   const [email, setEmail] = useState("");
   const [hasSignedUp, setHasSignedUp] = useState(false);
+  const [hasSubiscribed, setHasSubiscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
   };
 
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
 
-    if (email.length) {
-      setHasSignedUp(true);
+    const response = await subscribeCtrl.postSubscribe(email);
 
-      // TODO: send email to strapi
+    if (response?.status === 200) {
+      setHasSignedUp(true);
+      setLoading(false);
+    }
+
+    if (response?.status === 400) {
+      setHasSubiscribed(true);
+      setLoading(false);
     }
   };
 
@@ -37,25 +50,31 @@ export function SubscribeToNewsletter() {
             </p>
           </div>
 
-          <form
-            className="subscribe-to-newsletter__form"
-            onSubmit={handleOnSubmit}
-          >
-            <input
-              type="email"
-              placeholder="Entre com email"
-              className="subscribe-to-newsletter__email input"
-              value={email}
-              onChange={handleOnChange}
-            />
-
-            <button
-              type="submit"
-              className="subscribe-to-newsletter__submit btn btn--medium btn--turquoise"
+          {hasSubiscribed ? (
+            <h4 className="subscribe-to-newsletter__serror">
+              Email já inscrito !
+            </h4>
+          ) : (
+            <form
+              className="subscribe-to-newsletter__form"
+              onSubmit={handleOnSubmit}
             >
-              Assine
-            </button>
-          </form>
+              <input
+                type="email"
+                placeholder="Entre com email"
+                className="subscribe-to-newsletter__email input"
+                value={email}
+                onChange={handleOnChange}
+              />
+
+              <button
+                type="submit"
+                className="subscribe-to-newsletter__submit btn btn--medium btn--turquoise"
+              >
+                {loading ? <Loading /> : "Assine"}
+              </button>
+            </form>
+          )}
         </>
       )}
     </section>
