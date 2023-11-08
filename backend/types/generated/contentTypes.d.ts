@@ -764,6 +764,55 @@ export interface ApiBlogArticleBlogArticle extends Schema.CollectionType {
   };
 }
 
+export interface ApiEventEvent extends Schema.CollectionType {
+  collectionName: 'events';
+  info: {
+    singularName: 'event';
+    pluralName: 'events';
+    displayName: 'Event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
+    startingDate: Attribute.Date & Attribute.Required;
+    endDate: Attribute.Date & Attribute.Required;
+    singleRoom: Attribute.Decimal & Attribute.Required;
+    SharedPrice: Attribute.Decimal & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    participants: Attribute.Relation<
+      'api::event.event',
+      'oneToMany',
+      'api::participant.participant'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiExperiencePageExperiencePage extends Schema.SingleType {
   collectionName: 'experience_pages';
   info: {
@@ -880,6 +929,78 @@ export interface ApiInfoPageInfoPage extends Schema.SingleType {
   };
 }
 
+export interface ApiNewsletterSignupNewsletterSignup
+  extends Schema.CollectionType {
+  collectionName: 'newsletter_signups';
+  info: {
+    singularName: 'newsletter-signup';
+    pluralName: 'newsletter-signups';
+    displayName: 'Newsletter Signup';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    email: Attribute.Email & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::newsletter-signup.newsletter-signup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::newsletter-signup.newsletter-signup',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiParticipantParticipant extends Schema.CollectionType {
+  collectionName: 'participants';
+  info: {
+    singularName: 'participant';
+    pluralName: 'participants';
+    displayName: 'Participant';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    firstName: Attribute.String & Attribute.Required;
+    lastName: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    phone: Attribute.String & Attribute.Required;
+    isGeneralInterest: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    event: Attribute.Relation<
+      'api::participant.participant',
+      'manyToOne',
+      'api::event.event'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::participant.participant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::participant.participant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSectionHeroSectionHero extends Schema.CollectionType {
   collectionName: 'section_heroes';
   info: {
@@ -941,9 +1062,12 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::author.author': ApiAuthorAuthor;
       'api::blog-article.blog-article': ApiBlogArticleBlogArticle;
+      'api::event.event': ApiEventEvent;
       'api::experience-page.experience-page': ApiExperiencePageExperiencePage;
       'api::info.info': ApiInfoInfo;
       'api::info-page.info-page': ApiInfoPageInfoPage;
+      'api::newsletter-signup.newsletter-signup': ApiNewsletterSignupNewsletterSignup;
+      'api::participant.participant': ApiParticipantParticipant;
       'api::section-hero.section-hero': ApiSectionHeroSectionHero;
     }
   }
