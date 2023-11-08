@@ -5,4 +5,5 @@ export const ENDPOINTS = {
   INFO: `${BASE_URL}/info-page?populate=deep`,
   EXPERIENCE: `${BASE_URL}/experience-page?populate=deep`,
   BLOG: `${BASE_URL}/blog-articles?populate=deep`,
+  SUBSCRIBE: `${BASE_URL}/newsletter-signups`,
 };
