@@ -1,0 +1,35 @@
+.blog-home-card {
+  height: 36rem;
+  margin-bottom: 16rem;
+  transition: all 300ms ease-in-out;
+
+  &:hover {
+    filter: brightness(120%);
+  }
+
+  &:nth-of-type(1) {
+    width: 64.5%;
+  }
+
+  &:nth-of-type(2) {
+    width: 30%;
+  }
+
+  &:nth-of-type(3),
+  &:nth-of-type(4) {
+    width: 47.3%;
+  }
+
+  &__image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 4rem;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  &__headline {
+    margin: 2.4rem 0;
+  }
+}
