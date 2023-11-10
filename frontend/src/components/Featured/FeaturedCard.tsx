@@ -21,7 +21,7 @@ export function FeaturedCard({ article }: FeaturedCardProps) {
       </div>
 
       <div className="featured-card__content">
-        <h5 className="featured-card__content--headline">{headline}</h5>
+        <h5 className="featured-card__content-headline">{headline}</h5>
 
         <p className="copy">{formatDate(createdAt)}</p>
       </div>
