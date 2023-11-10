@@ -1,11 +1,14 @@
 import { ExperienceClass } from "@/api/experience";
 import { Info, SectionHero } from "@/components/Shared";
 
-const exoerienceCtrl = new ExperienceClass();
+const experienceCtrl = new ExperienceClass();
 
 export default async function Experience() {
-  const data = await exoerienceCtrl.get();
-  const { section_hero, infos } = data.attributes;
+  const experience = await experienceCtrl.getAll();
+
+  if (!experience) return null;
+
+  const { section_hero, infos } = experience.attributes;
 
   return (
     <main>
