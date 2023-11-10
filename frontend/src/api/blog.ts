@@ -59,9 +59,10 @@ export class BlogClass {
 
       if (response.status !== 200) throw result;
 
-      return result;
+      return result.data;
     } catch (error) {
       console.log("Blog", error);
+      return [];
     }
   }
 
@@ -79,9 +80,7 @@ export class BlogClass {
 
       if (response.status !== 200) throw result;
 
-      if (!result.data) return null;
-
-      return result.data[0];
+      return result;
     } catch (error) {
       console.log("Blog", error);
     }
