@@ -80,7 +80,7 @@ export class BlogClass {
 
       if (response.status !== 200) throw result;
 
-      return result;
+      return result.data[0];
     } catch (error) {
       console.log("Blog", error);
     }
