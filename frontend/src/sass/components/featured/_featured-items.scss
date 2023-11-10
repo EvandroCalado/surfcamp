@@ -1,5 +1,7 @@
 .featured-items {
   width: 100%;
+  max-width: 130.8rem;
+  margin: 0 auto;
   padding: 4.8rem;
 
   &__headline {
@@ -8,7 +10,7 @@
 
   &__container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(42rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(34rem, 1fr));
     gap: 4.2rem;
   }
 }
