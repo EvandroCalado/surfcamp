@@ -770,6 +770,7 @@ export interface ApiEventEvent extends Schema.CollectionType {
     singularName: 'event';
     pluralName: 'events';
     displayName: 'Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -790,9 +791,13 @@ export interface ApiEventEvent extends Schema.CollectionType {
     singleRoom: Attribute.Decimal & Attribute.Required;
     SharedPrice: Attribute.Decimal & Attribute.Required;
     image: Attribute.Media & Attribute.Required;
+    isActive: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    slug: Attribute.UID<'api::event.event', 'name'> & Attribute.Required;
     participants: Attribute.Relation<
       'api::event.event',
-      'oneToMany',
+      'manyToMany',
       'api::participant.participant'
     >;
     createdAt: Attribute.DateTime;
@@ -966,6 +971,7 @@ export interface ApiParticipantParticipant extends Schema.CollectionType {
     singularName: 'participant';
     pluralName: 'participants';
     displayName: 'Participant';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -973,14 +979,14 @@ export interface ApiParticipantParticipant extends Schema.CollectionType {
   attributes: {
     firstName: Attribute.String & Attribute.Required;
     lastName: Attribute.String & Attribute.Required;
-    email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    email: Attribute.Email & Attribute.Required;
     phone: Attribute.String & Attribute.Required;
     isGeneralInterest: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
-    event: Attribute.Relation<
+    events: Attribute.Relation<
       'api::participant.participant',
-      'manyToOne',
+      'manyToMany',
       'api::event.event'
     >;
     createdAt: Attribute.DateTime;
