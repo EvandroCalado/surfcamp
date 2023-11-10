@@ -2,7 +2,7 @@ import { TypeInfo } from "@/types/typeInfo";
 import { ENDPOINTS } from "@/utils/constants";
 
 export class ExperienceClass {
-  async get() {
+  async getAll() {
     try {
       const response = await fetch(ENDPOINTS.EXPERIENCE, {
         next: {
@@ -17,6 +17,7 @@ export class ExperienceClass {
       return result.data;
     } catch (error) {
       console.log("Experience", error);
+      return null;
     }
   }
 }
