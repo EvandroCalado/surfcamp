@@ -1,0 +1,16 @@
+.events-grid {
+  width: 100%;
+  max-width: 130.8rem;
+  margin: 0 auto;
+  padding: 12rem 8.6rem;
+
+  & h3 {
+    margin-bottom: 3.8rem;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+    gap: 4.2rem;
+  }
+}
